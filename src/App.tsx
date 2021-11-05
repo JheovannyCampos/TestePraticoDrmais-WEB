@@ -1,8 +1,14 @@
 import React from "react";
-import { Dashboard } from "./screens/Dashboard";
+
+import { BrowserRouter as Router } from 'react-router-dom';
+import Routes from './routes';
 
 export function App() {
   return (
-    <Dashboard />
+
+
+      <Router>
+        <Routes />
+      </Router>
   );
 }

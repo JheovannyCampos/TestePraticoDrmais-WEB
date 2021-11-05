@@ -12,15 +12,12 @@ interface ButtonProps {
 export function Button({ onClick, title, ...rest }: ButtonProps){
     return (
         <Container
-        onClick={onClick}
-        {...rest}
+            onClick={onClick}
+            {...rest}
         >
             <Title>
                 {title}
             </Title>
         </Container>
-            
-            
-        
     );
 }

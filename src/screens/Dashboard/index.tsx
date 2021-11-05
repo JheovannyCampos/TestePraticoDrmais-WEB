@@ -10,7 +10,6 @@ import {
     ProjectList,
  } from "./styles";
 
-
 export function Dashboard(){
     const [projects, setProjects] = useState<ProjectsDTO[]>([]);
     
@@ -24,7 +23,7 @@ export function Dashboard(){
             }
         }
         fetchProjects();
-    },[])
+    },[projects])
 
     return (
         <Container>

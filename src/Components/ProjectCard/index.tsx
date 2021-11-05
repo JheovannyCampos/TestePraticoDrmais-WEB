@@ -22,10 +22,8 @@ export function ProjectCard({data, onClick, ...rest}: Props){
     >
         <Details>
             <Title>Código:<Code>{data.idprojeto}</Code></Title>
-           
-
+          
             <Title>Título:<Title>{data.ds_titulo}</Title></Title>
-
 
             <Title>Descrição:<Description>{data.ds_descricao}</Description></Title>
             
