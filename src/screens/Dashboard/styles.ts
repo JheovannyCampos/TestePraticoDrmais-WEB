@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-    flex: 1;
-    background-color: whitesmoke;
+    max-width: auto;
 `;
 export const Header = styled.div`
-    width: 100%;
+    max-width: auto;
     height: 200px;
-
-    background-color: lightgray;
+    display: flex;
+    background-color: whitesmoke;
 
     justify-content: space-between;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
+    padding: 10px;
 `;
 
 export const Title = styled.h1`
