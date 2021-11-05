@@ -1,3 +1,6 @@
+//Este componente é um botão, com as mesmas propriedades de um botão nativo.
+//Está sendo usado desta forma, para ser melhor estilizado.
+
 import {
     Container,
     Title,
@@ -7,7 +10,6 @@ interface ButtonProps {
     onClick: () => void;
     title: string;
 }
-
 
 export function Button({ onClick, title, ...rest }: ButtonProps){
     return (

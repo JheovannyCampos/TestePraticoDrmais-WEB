@@ -1,4 +1,6 @@
-import React from 'react';
+//Este componente é uma div que representa um card, que exibe os valores em telas,
+//como o Código, Título e Descrição do projeto
+
 import { ProjectsDTO } from '../../dtos/ProjectsDTO';
 
 import {

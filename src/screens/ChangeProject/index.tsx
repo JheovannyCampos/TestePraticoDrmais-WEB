@@ -1,11 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { Button } from "../../Components/Button";
-import { ProjectCard } from "../../Components/ProjectCard";
-import { ProjectsDTO } from "../../dtos/ProjectsDTO";
+//Nesta tela é onde pode ser alerado ou deletado o projeto
+//É apresentado ao usuário uma tela com um formulário
+//trazendo os dados atuais para serem alterados,
+//Em seu "Header" exitem dois botões, "Salvar" para guardar
+//os dados alterados, e "Deletar" para apagar o projeto; 
 
+import { useEffect, useState } from "react";
+import { Button } from "../../Components/Button";
 import { useHistory, useLocation } from "react-router-dom";
 import * as Yup from 'yup';
 import { api } from "../../services/api"
+import { InputForm } from "../../Components/InputForm";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { ProjectsDTO } from "../../dtos/ProjectsDTO";
 
 import { 
     Container,
@@ -14,16 +21,19 @@ import {
     ButtonArea,
     InputArea,
  } from "./styles";
-import { InputForm } from "../../Components/InputForm";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 
+
+//Esta interface abaixo, define a tipagem dos dados que serão trazidos pelo formulário
 interface FormData {
     idprojeto: string;
     ds_titulo: string;
     ds_descricao: string;
 }
 
+//Este schema abaixo é onde é feito o tratamento dos dados do input
+//o input "idprojeto", deve ser um número positivo
+//O input "ds_titulo", deve ser uma string e obrigatório
+//O input "ds_descricao", deve ser uma string e obrigatório
 const schema = Yup.object().shape({
     idprojeto: Yup
         .number()
@@ -52,8 +62,6 @@ export function ChangeProject(){
         ds_descricao: location.state?.ds_descricao,
     }
 
-    console.log(location)
-
     const {
         control,
         handleSubmit,
@@ -64,10 +72,15 @@ export function ChangeProject(){
         defaultValues: project,
     });
 
+    //Esta função serve para deletar o objeto, que tenha o id selecionado pelo objeto
+    //o usuário precisa confirmar para deletar o objeto
     async function handleDelete(){
-        await api.delete(`/projects/${project.id}`).then(() => history.push("/"));
+        // eslint-disable-next-line no-restricted-globals
+        const resp = confirm("Toque em ok para confirmar")
+        resp ?  await api.delete(`/projects/${project.id}`).then(() => history.push("/")) : history.push("/change-project")
     }
 
+    //Esta função abaixo serve para fazer um get na API, pelo id selecionado pelo objeto
     useEffect(() => {
         async function fetchProjects(){
             try {
@@ -80,6 +93,8 @@ export function ChangeProject(){
         fetchProjects();
     },[])
 
+
+    //Esta função abaixo serve para fazer um put na API, ou seja, alterar o projeto pelo id selecionado pelo usuário
     async function handleRegister(form: FormData) {
         try {
             await api.put(`/projects/${project.id}`,{
@@ -93,6 +108,7 @@ export function ChangeProject(){
         }
     }
 
+    //Este return abaixo é onde rola todo o HTML, com os títulos, botões e inputs.
     return (
         <Container>
             <Header>
