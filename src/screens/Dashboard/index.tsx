@@ -22,8 +22,8 @@ export function Dashboard(){
             } catch (error) {
                 console.log(error);
             }
-            fetchProjects();
         }
+        fetchProjects();
     },[])
 
     return (

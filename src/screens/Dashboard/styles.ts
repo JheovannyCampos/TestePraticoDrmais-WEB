@@ -22,7 +22,5 @@ export const Title = styled.h1`
 `;
 
 export const ProjectList = styled.div`
-    width: 100%;
-    height: 100%;
-    flex-direction: column;
+
 `;

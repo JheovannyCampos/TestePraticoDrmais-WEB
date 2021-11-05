@@ -1,12 +1,6 @@
 {
   "projects": [
     {
-      "idprojeto": 987,
-      "ds_titulo": "123",
-      "ds_descricao": "456",
-      "id": 1
-    },
-    {
       "idprojeto": 983,
       "ds_titulo": "123",
       "ds_descricao": "456",
