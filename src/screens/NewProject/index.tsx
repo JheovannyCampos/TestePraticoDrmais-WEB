@@ -1,12 +1,9 @@
-import React, { FormEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as Yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Button } from "../../Components/Button";
 import { InputForm } from "../../Components/InputForm";
-
-
-import { ProjectsDTO } from "../../dtos/ProjectsDTO";
+import { useHistory } from "react-router-dom";
 
 import { api } from "../../services/api";
 
@@ -16,6 +13,7 @@ import {
     Title,
     InputArea,
  } from "./styles";
+
 
  interface FormData {
     idprojeto: string;
@@ -39,6 +37,8 @@ const schema = Yup.object().shape({
 
 export function NewProject(){
     
+    const history = useHistory();
+
     const {
         control,
         handleSubmit,
@@ -54,21 +54,20 @@ export function NewProject(){
             ds_titulo: form.ds_titulo,
             ds_descricao: form.ds_descricao,
         }
-        console.log(newProject)
 
-        // try {
-        //     await api.post("/projects",  newProject ).then(() => )         
-        //  reset().
-        // } catch (error: any) {
-        //     console.log(error.message);
-        // }
+        try {
+            await api.post("/projects",  newProject ).then(() => history.push("/"))
+            reset();
+        } catch (error: any) {
+            console.log(error.message);
+        }
     }
 
     return (
         <Container>
             <Header>
                 <Title>Adicionar um novo projeto</Title>
-                <Button title="Salvar" onClick={() => handleSubmit(handleRegister)}/>
+                <Button title="Salvar" onClick={handleSubmit(handleRegister)}/>
             </Header>
             <InputArea>
                 <h3>Código do projeto</h3>

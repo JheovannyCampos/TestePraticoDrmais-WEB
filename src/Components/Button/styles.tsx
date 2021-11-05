@@ -6,6 +6,7 @@ export const Container = styled.button`
     background-color: pink ;
     align-items: center;
     border-radius: 5px;
+    margin-top: 10px;
 `;
 export const Title = styled.h4`
     align-items: center;

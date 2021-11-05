@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Button } from "../../Components/Button";
 import { ProjectCard } from "../../Components/ProjectCard";
 import { ProjectsDTO } from "../../dtos/ProjectsDTO";
+
+import { useHistory, useLocation } from "react-router-dom";
+
 import { api } from "../../services/api"
 import { 
     Container,
@@ -12,7 +15,24 @@ import {
 
 export function Dashboard(){
     const [projects, setProjects] = useState<ProjectsDTO[]>([]);
+
+    const location = useLocation();
+
     
+    const history = useHistory();
+
+    function handleNewProject(){
+        history.push("/new-project");
+    }
+
+    function handleChangeProject(project: ProjectsDTO){
+        history.push({
+            pathname: `/change-project`,
+            state: project 
+        });
+    }
+
+
     useEffect(() => {
         async function fetchProjects(){
             try {
@@ -29,11 +49,11 @@ export function Dashboard(){
         <Container>
             <Header>
                 <Title>Projetos</Title>
-                <Button title="+ Adicionar" onClick={() => {}}/>
+                <Button title="+ Adicionar" onClick={handleNewProject}/>
             </Header>
             <ProjectList>
                 <ul>
-                    {projects.map((project) => <li><ProjectCard data={project} onClick={() => {}}/></li>)}
+                    {projects.map((project) => <li><ProjectCard data={project} onClick={() => handleChangeProject(project)}/></li>)}
                 </ul>
             </ProjectList>
         </Container>
