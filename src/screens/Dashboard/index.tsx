@@ -1,10 +1,17 @@
 import React from "react";
-import { Container } from "./styles";
+import { 
+    Container,
+    Header,
+    Title,
+ } from "./styles";
 
 export function Dashboard(){
     return (
         <Container>
-            <p>Hello world</p>
+            <Header>
+                <Title>Projetos</Title>
+                <button>+ Adicionar</button>
+            </Header>
         </Container>
     )
 }
